@@ -3,8 +3,7 @@ import { toJSON } from '../src/utils';
 
 const search = (query, type) => {
   fetch(`${API_URL}/search?q=${query}&type=${type}`)
-    .then(toJSON)
-    .catch(err => console.log(`Error on response: ${err}`));
+    .then(toJSON);
 };
 const searchArtists = (query) => {
   search(query, 'artist');
