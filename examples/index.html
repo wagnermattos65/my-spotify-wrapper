@@ -4,24 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Spotufy Wrapper Test</title>
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <title>My Spotify Wrapper Test</title>
 </head>
 <body>
-  <div id="albums"></div>
-  <script src="../dist/my-spotify-wrapper.umd.js"></script>
+  <section id="top">
+      <div id="page-head">
+          <h1> My Spotify Test </h1>'
+          <div class="input-field center">
+            <input type="text" id="artista" class="validate">
+            <label for="artista"> Artista: </label>
+            <button class="btn waves-effect waves-light" onclick="showAlbums()">Buscar albuns...</button>
+          </div>
+       </div>
+  </section>
+
+  <section id="response">
+      <div id="albums"></div>
+  </section>
+
+
+  <script src="../dist/my-spotify-wrapper.umd.min.js"></script>
+
   <script>
-    const albums = mySpotifyWrapper.searchAlbums('supercombo');
-    const albumEl = document.getElementById('albums');
+    function showAlbums() {
+      const artist = document.getElementById('artista').value;
+      if (artist != null) {
+        console.log('<',artist,'>');
+        const albums = mySpotifyWrapper.searchAlbums(artist);
+      const albumEl = document.getElementById('albums');
 
-    albums
-      .then( data => {
-        markup = data.albums.items.map(item => {
-          `<img src="${item.image[0]}.url" alt="${item.name}"`
-        }).join('');
+      albums
+        .then(data => {
+          markup = data.albums.items.map(item =>
+            `<img src="${item.images[0].url}" alt="${item.name}" />`
+          ).join('');
+          albumEl.innerHTML = markup;
+       });
+      } else {
+        console.log('<<',artist,'>>');
+      }
 
-        albumEl.innerHTML = markup;
-      })
-  </script>
+    }
+
+    </script>
 </body>
 
 

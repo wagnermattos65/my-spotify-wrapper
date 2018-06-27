@@ -1,15 +1,12 @@
-import { API_URL } from '../src/config';
-import { toJSON } from '../src/utils';
+/* global fetch */
 
-const getAlbum = (id) => {
-  fetch(`${API_URL}/albums/{${id}}`).then(toJSON);
-};
-const getAlbums = (ids) => {
-  fetch(`${API_URL}/albums/?ids=${ids}`).then(toJSON);
-};
+import { API_URL, HEADERS } from './config';
+import { toJSON } from './utils';
 
-const getAlbumTracks = (id) => {
-  fetch(`${API_URL}/albums/${id}/tracks`).then(toJSON);
-};
+const getAlbum = id => fetch(`${API_URL}/albums/{${id}}`, HEADERS).then(toJSON);
+
+const getAlbums = ids => fetch(`${API_URL}/albums/?ids=${ids}`, HEADERS).then(toJSON);
+
+const getAlbumTracks = id => fetch(`${API_URL}/albums/${id}/tracks`, HEADERS).then(toJSON);
 
 export { getAlbum, getAlbums, getAlbumTracks };

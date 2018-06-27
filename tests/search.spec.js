@@ -74,7 +74,7 @@ describe('My Spotify Wrapper', () => {
         });
       });
 
-      it.skip('should return the JSON Data from the Promise', () => {
+      it('should return the JSON Data from the Promise', () => {
         promise.resolves({ body: 'json' });
 
         const artists = search('supercombo', 'artist');

@@ -52,8 +52,8 @@ describe('My Spotify Wrapper', () => {
       });
 
       // verifica se o dado é recebido pela Promise
-      it.skip('should return the correct data from Promise', () => {
-        promise.resolves({ album: 'name'});
+      it('should return the correct data from Promise', () => {
+        promise.resolves({ album: 'name' });
 
         const album = getAlbum('dgsdfgdfgklnd');
         expect(album.resolveValue).to.be.eql({ album: 'name' });
@@ -74,11 +74,11 @@ describe('My Spotify Wrapper', () => {
       });
 
       // verifica se o dado é recebido pela Promise
-      it.skip('should return the correct data from Promise', () => {
+      it('should return the correct data from Promise', () => {
         promise.resolves({ albums: 'name' });
 
         const albums = getAlbums(['dgsdfgdfgklnd', 'kljkhsahljhl']);
-        expect(albums.resolveValue).to.be.eql({ album: 'name' });
+        expect(albums.resolveValue).to.be.eql({ albums: 'name' });
       });
     });
 
@@ -96,13 +96,12 @@ describe('My Spotify Wrapper', () => {
       });
 
       // verifica se o dado é recebido pela Promise
-      it.skip('should return the correct data from Promise', () => {
+      it('should return the correct data from Promise', () => {
         promise.resolves({ tracks: 'name' });
 
         const albumTracks = getAlbumTracks('dgsdfgdfgklnd');
-        expect(albums.resolveValue).to.be.eql({ tracks: 'name' });
+        expect(albumTracks.resolveValue).to.be.eql({ tracks: 'name' });
       });
     });
-
   });
 });

@@ -1,6 +1,4 @@
-import { searchAlbums } from '../src/main';
-
-global.fetch = require('node-fetch');
+import { searchAlbums } from '../src/search';
 
 const albums = searchAlbums('supercombo');
 
