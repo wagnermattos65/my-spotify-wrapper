@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-  <title>My Spotify Wrapper Test</title>
+  <title>My Spotify Wrapper UMD Test</title>
 </head>
 <body>
   <section id="top">
       <div id="page-head">
-          <h1> My Spotify Test </h1>'
+          <h1> My Spotify Wrapper Test - UMD Lib </h1>'
           <div class="input-field center">
             <input type="text" id="artista" class="validate">
             <label for="artista"> Artista: </label>
@@ -42,7 +42,18 @@
       albums
         .then(data => {
           markup = data.albums.items.map(item =>
-            `<img src="${item.images[0].url}" alt="${item.name}" />`
+          `<div class="card grey small horizontal">
+              <div class="card-image">
+                <img src="${item.images[0].url}"/>
+              </div>
+            <div class="card-stacked">
+              <div class="card-content">
+                <div class="card-title">${item.name}</div>
+                <p>Tipo      : ${item.album_type}</p>
+                <p>Lançamento: ${item.release_date}</p>
+                </div>
+              </div>
+            </div>`
           ).join('');
           albumEl.innerHTML = markup;
        });
@@ -52,9 +63,16 @@
 
     }
 
+      const albumsC = mySpotifyWrapper.searchAlbums('supercombo');
+      albumsC
+        .then(data => console.log(data));
+
+
+
     </script>
 </body>
 
 
 
 </html>
+
