@@ -1,24 +1,27 @@
-import {
-  search,
-  searchArtists,
-  searchAlbums,
-  searchTracks,
-  searchPlaylists,
-} from '../src/search';
+/* global fetch */
 
-import {
-  getAlbum,
-  getAlbums,
-  getAlbumTracks,
-} from '../src/album';
+import search from './search';
+import album from './album';
+import { API_URL } from './config';
+import { toJSON } from './utils';
 
-module.exports = {
-  search,
-  searchArtists,
-  searchAlbums,
-  searchTracks,
-  searchPlaylists,
-  getAlbum,
-  getAlbums,
-  getAlbumTracks,
-};
+export default class MySpotifyWrapper {
+  constructor(options) {
+    this.apiURL = options.apiURL || API_URL;
+    this.token = options.token;
+
+    this.search = search.bind(this)();
+    this.album = album.bind(this)();
+  }
+
+  request(url) {
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+    };
+
+    return fetch(url, headers).then(toJSON);
+  }
+}
+

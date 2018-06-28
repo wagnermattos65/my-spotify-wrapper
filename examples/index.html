@@ -32,11 +32,15 @@
   <script src="../dist/my-spotify-wrapper.umd.min.js"></script>
 
   <script>
+    const mySpotify = new mySpotifyWrapper({
+      token: 'BQC620r0hGcvhM86FTWsR8EkX_y2kvKC7m5mH7NZyQGm3-4TMYHeol_0hrSD_8TfHfR9vNkJl7orGfhMVSu7s7buPlr7ODmKC-Z_rwe819O-CdygTUIFa-2_-La2xKkM8p-B3CmhcRjniguuDAj1ZFwcOpP54WA'
+    });
+
     function showAlbums() {
       const artist = document.getElementById('artista').value;
       if (artist != null) {
         console.log('<',artist,'>');
-        const albums = mySpotifyWrapper.searchAlbums(artist);
+        const albums = mySpotify.search.albums(artist);
       const albumEl = document.getElementById('albums');
 
       albums
@@ -63,7 +67,7 @@
 
     }
 
-      const albumsC = mySpotifyWrapper.searchAlbums('supercombo');
+      const albumsC = mySpotify.search.albums('supercombo');
       albumsC
         .then(data => console.log(data));
 
